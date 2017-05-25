@@ -90,14 +90,14 @@ This is an Armada yaml, that describes the charts of the components that define 
 
 - *servicename* **.yaml**
 
-In general we are advocating a naming convention that defines the service name in the yaml file.  The reason for this convention will become apaent when we discuss teh Post Service deployment configuration yaml.
+In general we are advocating a naming convention that defines the service name in the yaml file.  The reason for this convention will become apaent when we discuss the Post Service deployment configuration yaml.
 
 ----
 ## Service Configuration (Post Configuration)
 
 - *servicename* **_post.yaml**
 
-This is some sort of YAML , hat provides a generic format that allows teh ability to drive behaviour on the service deployed on top of the UCP/CP platform.
+This is some sort of YAML , that provides a generic format that allows the ability to drive behaviour on the service deployed on top of the UCP/CP platform.
 This behavior might be API driven, CLI driven or any other mechanism. This TAML should provide generic artifacts that allows the Workflow engine (ShipYard) to identify and execute instructions
 
 - **clcp_post.yaml**
