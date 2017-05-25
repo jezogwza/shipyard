@@ -1,0 +1,85 @@
+# Copyright 2017 AT&T Intellectual Property.  All other rights reserved.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+####################
+#
+# <servicename>_post.yaml - Site server design definition for physical layer
+#
+####################
+# version the schema in this file so consumers can rationally parse it
+#
+# Do we have Resource of Kind that define specs specific for ten type of interface
+# in a generic way . There are some challenges with this however
+#
+---
+apiVersion: 'v1.0'
+kind: Interface.API
+metadata:
+  name: "name of teh resource"
+spec:
+  # # Somethign here defines teh needs of this type of Interface
+  authentication: 
+  - login:
+     password:
+  endpoint:
+    # Specify the url or break it down here
+   payload:
+     # some generic way of feeding a payload into it 
+      # source of the payload??
+      # do we wwant to be somethign like this ?
+      # its ore of source from something in teh payloads to ShipYard
+      
+---
+apiVersion: 'v1.0'
+kind: Interface.CLI
+metadata:
+  name: "name of teh resource"
+spec:
+  # # Somethign here defines teh needs of this type of Interface
+  authentication: 
+    - login:
+        password:
+  command:
+    # Specify the url or break it down here
+     shell:
+     args : 
+      
+---
+apiVersion: 'v1.0'
+kind: Interface.SSH
+metadata:
+  name: "name of teh resource"
+spec:
+  # # Somethign here defines teh needs of this type of Interface
+  authentication: 
+    - login:
+        password:
+  command:
+    # Specify the url or break it down here
+     shell:
+     args : 
+    
+---
+apiVersion: 'v1.0'
+kind: Interface.ETC
+metadata:
+  name: "name of teh resource"
+spec:
+  # # Somethign here defines teh needs of this type of Interface
+  authentication: 
+    - login:
+        password:
+  command:
+    # Specify the url or break it down here
+     shell:
+     args : 
