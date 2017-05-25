@@ -25,7 +25,11 @@
 apiVersion: 'v1.0'
 kind: Interface.API
 metadata:
-  name: "name of teh resource"
+  name: "name of the resource"
+    ## Would it make sense to have a label or some descriptor that will allow
+  ## Shipyard to identify a Gateway i.e. Armada, K8s , DryDock, etc.
+  ## Shipyard might have DAG Wrapper code ti interact generically with those
+  ## interfaces
 spec:
   # # Somethign here defines teh needs of this type of Interface
   authentication: 
@@ -43,7 +47,7 @@ spec:
 apiVersion: 'v1.0'
 kind: Interface.CLI
 metadata:
-  name: "name of teh resource"
+  name: "name of the resource"
 spec:
   # # Somethign here defines teh needs of this type of Interface
   authentication: 
@@ -58,7 +62,11 @@ spec:
 apiVersion: 'v1.0'
 kind: Interface.SSH
 metadata:
-  name: "name of teh resource"
+  name: "name of the resource"
+  ## Would it make sense to have a label or some descriptor that will allow
+  ## Shipyard to identify a Gateway i.e. Armada, K8s , DryDock, etc.
+  ## Shipyard might have DAG Wrapper code ti interact generically with those
+  ## interfaces
 spec:
   # # Somethign here defines teh needs of this type of Interface
   authentication: 
@@ -73,7 +81,11 @@ spec:
 apiVersion: 'v1.0'
 kind: Interface.ETC
 metadata:
-  name: "name of teh resource"
+  name: "name of the resource"
+    ## Would it make sense to have a label or some descriptor that will allow
+  ## Shipyard to identify a Gateway i.e. Armada, K8s , DryDock, etc.
+  ## Shipyard might have DAG Wrapper code ti interact generically with those
+  ## interfaces
 spec:
   # # Somethign here defines teh needs of this type of Interface
   authentication: 
