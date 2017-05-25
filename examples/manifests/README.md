@@ -8,11 +8,36 @@ Kubernetes style artifact definition.
 
 The high level expectation of what the data on this manifests will define is pictured here :
 
-<img src="https://github.com/att-comdev/shipyard/examples/manifests/manifest_hierarchy.png" width="100">
+![](/examples/manifests/manifest_hierarchy.png)
+----
+
+There are the  areas of configuration identified :
+
+- **Region**: Provides the details of the physical infrastructure
+
+- **Infrastructure**: Provides the details of the physical infrastructure
+	
+- **Service Installation**: Provides the details that allow the services to be deployed and initialized in a standard/common/generic way.
+	Although services can be configured differently between regions, i.e. scale differences. In general this deploys the
+	services in a homogenous way.
+
+- **Service Configuration (Post Configuration)**:	Services might have specific configuration that changes from region to region. i.e. in a cLCP service (Openstack Control Plane), there
+	might be a need for specific :
+	 - images
+	 - flavors 
+	 - tenants
+	 - service accounts
+	 - host aggregates
+	 - availability zones
+	 - exclusivity zone
+	 - placement resource classes
+	 - etc
 
 ----
 
-## region_manifest.yaml
+## Region
+
+- **region_manifest.yaml**:
 
 Region is the largest resource shipyard can understand.
 A region manifest will need to define :
@@ -22,39 +47,71 @@ A region manifest will need to define :
 - deployOn : Whether the region UCP ( undercloud) is been deployed on VM's or Baremetal
 
 ----
-## servers.yaml
+## Infrastructure
+
+- **servers.yaml**
+- **network.yaml**
+- **host_profile.yaml**
+- **hw_definition.yaml**
+- **agent_config.yaml**
 
 ----
-## network.yaml
+## Service Installation
+
+There is a set of Core areas of configuration whit respect to this areas .
+- The under cloud settings themselves. Values that are configurable and might drive the actual deployment of the under cloud.
+- The services configuration and deployment instruction. Services are capabilities provided on top of the under cloud. i.e if we are deploying an AIC Region that will support VM workloads. We will deploy the cLCP, which is an openstack-helm based deployment of openstack.
+
+
+- **core_functions.yaml**
+
+This delivers core component functions that always exist as part of a Container Platform. Componnets that provide functions sich as Logging, and Monitoring. This functions are considered core, and are expected to exist regardless of other domain specific services.
+
+- **ucp_features_config.yaml**
+
+This delivers configuration settings for under cloud components
+
+- **security_config.yaml**
+
+This delivers configuration settings in security areas :
+- Secrets
+- Certificates
+- RBAC
+
+# Domain Specific Services
+- **clcp.yaml**
+
+This is an Armada yaml, that describes the charts of the components that define the cLCP. Openstack components based on openstack-helm, plus other functions that might be found in openstack-helm-infra. 
+
+- **onap.yaml**
+
+This is an Armada yaml, that describes the charts of the components that define an ONAP VMI deployment.
+
+- **<service name>.yaml**
+
+In general we are advocating a naming convention that defines the service name in the yaml file.  The reason for this convention will become apaent when we discuss teh Post Service deployment configuration yaml.
 
 ----
-## hw_definition.yaml
+## Service Configuration (Post Configuration)
+
+- **<service name>_post.yaml**
+
+This is some sort of YAML , hat provides a generic format that allows teh ability to drive behaviour on the service deployed on top of the UCP/CP platform.
+This behavior might be API driven, CLI driven or any other mechanism. This TAML should provide generic artifacts that allows the Workflow engine (ShipYard) to identify and execute instructions
+
+- **clcp_post.yaml**
+
+This is some sort of YAML that provides information that allows ShipYard to configure things like :
+- Testing images (not ORM driven)
+- Host Aggregates
+- Availability Zones
+- Placement Information
+- Other Services needs..
+- Exclusisvity Groups
+
+All of this would be expressed using the generic format defined in the <Service_name>_post.yaml file
+
+
+
 
 ----
-## host_profile.yaml
-
-----
-## services.yaml
-
-Will define high level needs for all the services that need to run above the undercloud
-
-It relates to the files :
-
-## core_services.yaml
-## clcp_services.yaml
-## onap_services.yaml
-## cdp_services.yaml
-
-
-----
-## undercloud.yaml
-
-This file will incude the configuration aspects of the undercloud that are tunnables.
-Such as :
-i.e.
--Security 
--RBAC definitions
--Certificates
--UCP Tunnables
--Kernel Tunnables, etc
--Agent Tunnables
