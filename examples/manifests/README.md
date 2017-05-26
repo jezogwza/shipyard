@@ -95,6 +95,23 @@ In general we are advocating a naming convention that defines the service name i
 ----
 ## Service Configuration (Post Configuration)
 
+There is some category of post configuration that can be achieved using the bootstap section of a chart 
+i.e. In teh nova chart the values.xml has the sectione :
+
+bootstrap:
+  enabled: true
+  flavors:
+    m1_tiny:
+        name: "m1.tiny"
+        id: "auto"
+        ram: 512
+        disk: 20
+        vcpus: 1
+
+which will indicate that an image will be loaded once nova has been fully deployed.
+However, there will be some cases in which the bootstrapping will not be enough to satisfy the post deployment configuration needs of the service component.
+At that time the approach will be using the framework describes in the example yaml's below.
+
 - *servicename* **_post.yaml**
 
 This is some sort of YAML , that provides a generic format that allows the ability to drive behaviour on the service deployed on top of the UCP/CP platform.
