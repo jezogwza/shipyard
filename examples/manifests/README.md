@@ -58,10 +58,11 @@ A region manifest will need to define :
 ----
 ## Service Installation
 
-There is a set of Core areas of configuration whit respect to this areas .
+There is a par of  group of areas that can be configured via this files  , areas such as :
 - The under cloud settings themselves. Values that are configurable and might drive the actual deployment of the under cloud.
-- The services configuration and deployment instruction. Services are capabilities provided on top of the under cloud. i.e if we are deploying an AIC Region that will support VM workloads. We will deploy the cLCP, which is an openstack-helm based deployment of openstack.
+- The Domain specific services configuration and deployment instruction. Services are capabilities provided on top of the under cloud. i.e if we are deploying an AIC Region that will support VM workloads. We will deploy the cLCP, which is an openstack-helm based deployment of openstack.
 
+The expectation is that even this configuration instructions will be delivered as YAML driven Armada/Helm to deliver the configurations. (**)
 
 - **core_functions.yaml**
 
