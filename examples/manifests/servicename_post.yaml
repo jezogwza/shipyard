@@ -15,83 +15,57 @@
 #
 # <servicename>_post.yaml - Site server design definition for physical layer
 #
+# clcp_post.yaml
+# this is only applicable if cLCP .yaml exists
+
+# cdp_post.yaml
+# this is only applicable if cdp .yaml exists
+#
+#
+# We will rely on  Bootstrap on each chart for some of teh Post Configuration.
+# But in many cases will need to resort to this approach
+#
+# 
+# And this approach for others that are more complex
+#
+#
 ####################
 # version the schema in this file so consumers can rationally parse it
 #
-# Do we have Resource of Kind that define specs specific for ten type of interface
-# in a generic way . There are some challenges with this however
 #
----
+----
 apiVersion: 'v1.0'
-kind: Interface.API
+kind: TaskData
+metadata:
+  name: "DefautTaskData"
+  Service:""  
+  Feature:""
+spec:
+   #
+   # Here we have all the Generic common stuff needed for Dag Tasks
+   #
+   
+   
+
+----
+apiVersion: 'v1.0'
+kind: TaskData
 metadata:
   name: "name of the resource"
-    ## Would it make sense to have a label or some descriptor that will allow
-  ## Shipyard to identify a Gateway i.e. Armada, K8s , DryDock, etc.
-  ## Shipyard might have DAG Wrapper code ti interact generically with those
-  ## interfaces
+  Task: HostAggregate
+  Parent: DefautTaskData
+  Service:"cLCP"
+
 spec:
-  # # Somethign here defines teh needs of this type of Interface
-  authentication: 
-  - login:
-     password:
-  endpoint:
-    # Specify the url or break it down here
-   payload:
-     # some generic way of feeding a payload into it 
-      # source of the payload??
-      # do we wwant to be somethign like this ?
-      # its ore of source from something in teh payloads to ShipYard
-      
----
-apiVersion: 'v1.0'
-kind: Interface.CLI
-metadata:
-  name: "name of the resource"
-spec:
-  # # Somethign here defines teh needs of this type of Interface
-  authentication: 
-    - login:
-        password:
-  command:
-    # Specify the url or break it down here
-     shell:
-     args : 
-      
----
-apiVersion: 'v1.0'
-kind: Interface.SSH
-metadata:
-  name: "name of the resource"
-  ## Would it make sense to have a label or some descriptor that will allow
-  ## Shipyard to identify a Gateway i.e. Armada, K8s , DryDock, etc.
-  ## Shipyard might have DAG Wrapper code ti interact generically with those
-  ## interfaces
-spec:
-  # # Somethign here defines teh needs of this type of Interface
-  authentication: 
-    - login:
-        password:
-  command:
-    # Specify the url or break it down here
-     shell:
-     args : 
+    List of aggregates
+    # Works for creating the aggregates
+    # Solve for Server to Aggregate mapping?
     
----
-apiVersion: 'v1.0'
-kind: Interface.ETC
-metadata:
-  name: "name of the resource"
-    ## Would it make sense to have a label or some descriptor that will allow
-  ## Shipyard to identify a Gateway i.e. Armada, K8s , DryDock, etc.
-  ## Shipyard might have DAG Wrapper code ti interact generically with those
-  ## interfaces
-spec:
-  # # Somethign here defines teh needs of this type of Interface
-  authentication: 
-    - login:
-        password:
-  command:
-    # Specify the url or break it down here
-     shell:
-     args : 
+    # How do we instruct the  DAG or is that Hardcoded in the flow 
+    # Flag that instruct the DAG that it needs execute this after it creates the aggregates
+    #  - implicit the existence of this resource 
+    # 
+    # Each server in the servers.yaml has the aggregate they should be associated with
+    #
+    # There might be some dependency on how this flag works based on the way AirFlow works.
+----    

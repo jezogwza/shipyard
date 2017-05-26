@@ -110,7 +110,7 @@ This is some sort of YAML that provides information that allows ShipYard to conf
 - Other Services needs..
 - Exclusivity Groups
 
-All of this would be expressed using the generic format defined in the <Service_name>_post.yaml file
+All of this would be expressed using the generic format defined in the *servicename* **_post.yaml** file
 
 
 

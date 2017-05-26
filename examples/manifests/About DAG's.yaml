@@ -1,0 +1,29 @@
+#
+#
+# About DAG integration with YAML payload
+#
+# The idea is that the DAGs will be associated with labels
+# and the Resource will have labels in their metadata
+#
+# At a minimum we would have 2 labels per Resource 
+#
+# ServiceLabel : i.e. cLCP. ONAP, CDP, etc 
+	Something that defines the over the top function
+# FunctionLabel: i.e. Logging, Host Config, etc : 
+	Something that defines the purpose of the config data been provided
+#
+#  The DAG's dont need to have both associated with them, only at least one.
+# That allows for :
+#	- DAG's that are used for specific  over the top services.
+#	- DAG's that are used for a specific functionality
+# 
+
+
+This has an example of a Trigger DAG only when "https://github.com/apache/incubator-airflow/blob/master/airflow/example_dags/example_trigger_controller_dag.py"
+If this case we would just have some python library component that extrapolates the labels from the appropriate payload and then just decides if this needs to be done or not
+
+----
+Look at the servicename_post.yaml for examples on the yaml inputs.
+   
+      
+   
